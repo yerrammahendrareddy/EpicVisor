@@ -1,0 +1,3 @@
+Flask==x.x.x
+Flask-SQLAlchemy==x.x.x
+Werkzeug==x.x.x

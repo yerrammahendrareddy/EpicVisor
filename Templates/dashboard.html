@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Welcome, {{ username }}!</h2>
+    <form action="/submit_story" method="post" class="mb-4">
+        <div class="form-group">
+            <textarea name="story_content" class="form-control" rows="10" placeholder="Enter your story here..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Story</button>
+    </form>
+
+    <h3 class="text-center mb-4">Your Last Story Analysis:</h3>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Entities Identified:</h5>
+            <ul class="list-group list-group-flush">
+                {% for entity, label in insights.entities %}
+                <li class="list-group-item"><strong>{{ entity }}</strong> ({{ label }})</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">Sentiment Analysis:</h5>
+            <ul class="list-group list-group-flush">
+                {% for sentiment_data in insights.sentiments %}
+                <li class="list-group-item">
+                    <p><strong>Text:</strong> {{ sentiment_data.text }}</p>
+                    <p><strong>Sentiment:</strong> {{ sentiment_data.sentiment }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
